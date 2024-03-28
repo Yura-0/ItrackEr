@@ -1,5 +1,8 @@
 {
   "@@locale": "en",
   "welcome" : "Welcome to ItrackEr!",
-  "welcome2" : "Track your income and expenses right on your phone!"
+  "welcome2" : "Track your income and expenses right on your phone!",
+  "income" : "Income",
+  "expense" : "Expense",
+  "statistics" : "Statistics"
 }
