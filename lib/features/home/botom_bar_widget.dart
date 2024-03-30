@@ -63,9 +63,9 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   ),
                   if (_currentIndex == 0)
                     Text(
-                     context.loc.income,
-                      style: TextStyle(
-                        color: Theme.of(context).scaffoldBackgroundColor,
+                      context.loc.income,
+                      style: const TextStyle(
+                        color: Colors.white,
                       ),
                     ),
                 ],
@@ -87,8 +87,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   if (_currentIndex == 1)
                     Text(
                       context.loc.expense,
-                      style: TextStyle(
-                        color: Theme.of(context).scaffoldBackgroundColor,
+                      style: const TextStyle(
+                        color: Colors.white,
                       ),
                     ),
                 ],
@@ -110,8 +110,8 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   if (_currentIndex == 2)
                     Text(
                       context.loc.statistics,
-                      style: TextStyle(
-                        color: Theme.of(context).scaffoldBackgroundColor,
+                      style: const TextStyle(
+                        color: Colors.white,
                       ),
                     ),
                 ],
