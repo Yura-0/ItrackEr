@@ -4,5 +4,9 @@
   "welcome2" : "Track your income and expenses right on your phone!",
   "income" : "Income",
   "expense" : "Expense",
-  "statistics" : "Statistics"
+  "statistics" : "Statistics",
+  "cash_storage" : "Cash storage",
+  "bank_storage" : "Bank storage",
+  "passive_income" : "Passive income",
+  "add_new_income" : "Add new income!"
 }
