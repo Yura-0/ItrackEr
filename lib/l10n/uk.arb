@@ -8,5 +8,12 @@
     "cash_storage": "Збереження у готівці",
     "bank_storage": "Банкове зберігання",
     "passive_income": "Пасивний дохід",
-    "add_new_income" : "Додай новий дохід!"
+    "add_new_income" : "Додай новий дохід!",
+    "dont_forget_expenses" : "Не забувайте про витрати!",
+    "payments" : "Платежі",
+    "shopping" : "Покупки",
+    "entertainment" : "Розваги",
+    "medicine" : "Медицина",
+    "jorney" : "Проїзд",
+    "auto" : "Авто"
 }

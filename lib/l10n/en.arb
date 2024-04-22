@@ -8,5 +8,12 @@
   "cash_storage" : "Cash storage",
   "bank_storage" : "Bank storage",
   "passive_income" : "Passive income",
-  "add_new_income" : "Add new income!"
+  "add_new_income" : "Add new income!",
+  "dont_forget_expenses" : "Don't forget the expenses!",
+  "payments" : "Payments",
+  "shopping" : "Shopping",
+  "entertainment" : "Entertainment",
+  "medicine" : "Medicine",
+  "jorney" : "Jorney",
+  "auto" : "Auto"
 }

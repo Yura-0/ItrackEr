@@ -4,6 +4,7 @@ import 'package:itracker/core/app/injector.dart';
 import 'package:itracker/features/transactions/income_page.dart';
 
 import '../../core/blocs/theme_bloc/theme_cubit.dart';
+import '../transactions/expense_page.dart';
 import 'botom_bar_widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,7 +34,7 @@ class HomePage extends StatelessWidget {
         controller: pageController,
         children: const [
           IncomePage(),
-          Center(child: Text('Income Page')),
+          ExpensePage(),
           Center(child: Text('Expense Page')),
         ],
       ),
