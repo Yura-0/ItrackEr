@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../../core/blocs/theme_bloc/theme_cubit.dart';
 import '../../../core/blocs/transactions_bloc/transactions_cubit.dart';
+import '../add_elem_widget.dart';
 
 class ListTransactionsPage extends StatelessWidget {
   final int category;
@@ -51,7 +52,15 @@ class ListTransactionsPage extends StatelessWidget {
                     : const Color.fromARGB(255, 185, 6, 6),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => AddElem(
+                  isIncome: isIncome,
+                  categoryId: category,
+                ),
+              );
+            },
             backgroundColor: isIncome
                 ? state == ThemeState.light
                     ? const Color.fromARGB(255, 0, 183, 255)
