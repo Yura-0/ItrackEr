@@ -4,7 +4,8 @@ import 'package:itracker/features/transactions/circle_widget.dart';
 import 'package:itracker/l10n/app_loc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../../core/blocs/theme_bloc/theme_cubit.dart';
+import '../../../core/blocs/theme_bloc/theme_cubit.dart';
+import 'list_transactions_page.dart';
 
 class IncomePage extends StatelessWidget {
   const IncomePage({super.key});
@@ -19,11 +20,9 @@ class IncomePage extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                // SizedBox(
-                //   height: Adaptive.h(5),
-                // ),
                 Text(
                   context.loc.add_new_income,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -44,7 +43,18 @@ class IncomePage extends StatelessWidget {
                   ),
                   width: Adaptive.h(13),
                   height: Adaptive.h(13),
-                  onTap: () => {},
+                  onTap: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ListTransactionsPage(
+                          category: 1,
+                          isIncome: true,
+                          categoryName: context.loc.bank_storage,
+                        ),
+                      ),
+                    ),
+                  },
                 ),
                 SizedBox(
                   height: Adaptive.h(10),
@@ -64,7 +74,18 @@ class IncomePage extends StatelessWidget {
                       ),
                       width: Adaptive.h(13),
                       height: Adaptive.h(13),
-                      onTap: () => {},
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ListTransactionsPage(
+                              category: 2,
+                              isIncome: true,
+                              categoryName: context.loc.cash_storage,
+                            ),
+                          ),
+                        ),
+                      },
                     ),
                     CircleWidget(
                       name: context.loc.passive_income,
@@ -78,7 +99,18 @@ class IncomePage extends StatelessWidget {
                       ),
                       width: Adaptive.h(13),
                       height: Adaptive.h(13),
-                      onTap: () => {},
+                      onTap: () => {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ListTransactionsPage(
+                              category: 3,
+                              isIncome: true,
+                              categoryName: context.loc.passive_income,
+                            ),
+                          ),
+                        ),
+                      },
                     ),
                   ],
                 ),

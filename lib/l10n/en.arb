@@ -15,5 +15,6 @@
   "entertainment" : "Entertainment",
   "medicine" : "Medicine",
   "jorney" : "Jorney",
-  "auto" : "Auto"
+  "auto" : "Auto",
+  "there_are_no_entries" : "There are no entries"
 }

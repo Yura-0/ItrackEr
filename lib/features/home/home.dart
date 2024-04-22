@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itracker/core/app/injector.dart';
-import 'package:itracker/features/transactions/income_page.dart';
+import 'package:itracker/features/transactions/pages/income_page.dart';
 
 import '../../core/blocs/theme_bloc/theme_cubit.dart';
-import '../transactions/expense_page.dart';
+import '../transactions/pages/expense_page.dart';
 import 'botom_bar_widget.dart';
 
 class HomePage extends StatelessWidget {

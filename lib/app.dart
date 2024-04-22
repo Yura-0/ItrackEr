@@ -6,6 +6,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'core/app/routes.dart';
 import 'core/blocs/theme_bloc/theme_cubit.dart';
+import 'core/blocs/transactions_bloc/transactions_cubit.dart';
 
 class TracerApp extends StatelessWidget {
   const TracerApp({super.key});
@@ -17,6 +18,9 @@ class TracerApp extends StatelessWidget {
         providers: [
           BlocProvider(
             create: (context) => locator<ThemeCubit>()..loadTheme(),
+          ),
+          BlocProvider(
+            create: (context) => locator<TransactionCubit>()..initState(),
           ),
         ],
         child: BlocBuilder<ThemeCubit, ThemeState>(
