@@ -109,7 +109,7 @@ class ListTransactionsPage extends StatelessWidget {
                                       transaction.name,
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 20,
+                                        fontSize: 18,
                                       ),
                                     ),
                                     Text(

@@ -60,7 +60,7 @@ class _AddElemState extends State<AddElem> {
               children: [
                 TextFormField(
                   controller: _nameController,
-                  maxLength: 25,
+                  maxLength: 15,
                   decoration: InputDecoration(labelText: context.loc.name),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
