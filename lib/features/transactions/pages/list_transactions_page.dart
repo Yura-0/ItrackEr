@@ -24,8 +24,8 @@ class ListTransactionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themebloc = context.read<ThemeCubit>();
-    List<TransactionModel> categoryTransactions = context
-        .read<TransactionCubit>()
+    final transactionCubit = context.read<TransactionCubit>();
+    List<TransactionModel> categoryTransactions = transactionCubit
         .state
         .where((transaction) => transaction.categoryId == category)
         .toList();
@@ -113,7 +113,7 @@ class ListTransactionsPage extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      '${isIncome ? "" : "-"}${transaction.amount}',
+                                      '${isIncome ? "+" : "-"}${transaction.amount}',
                                       style: TextStyle(
                                         color: isIncome
                                             ? themebloc.state ==
@@ -139,7 +139,9 @@ class ListTransactionsPage extends StatelessWidget {
                                 )),
                                 IconButton(
                                   icon: const Icon(Icons.delete),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    transactionCubit.deleteTransaction(transaction);
+                                  },
                                 ),
                               ],
                             ),
