@@ -16,5 +16,14 @@
     "medicine" : "Медицина",
     "jorney" : "Проїзд",
     "auto" : "Авто",
-    "there_are_no_entries" : "Немає записів"
+    "there_are_no_entries" : "Немає записів",
+    "add_element" : "Додати елемент",
+    "name" : "Назва",
+    "amount" : "Ціна",
+    "date" : "Дата",
+    "description" : "Опис",
+    "save" : "Додати",
+    "cancel" : "Назад",
+    "enter_name" : "Введіть назву",
+    "enter_amount" : "Введіть ціну"
 }

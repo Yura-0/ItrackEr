@@ -16,5 +16,14 @@
   "medicine" : "Medicine",
   "jorney" : "Jorney",
   "auto" : "Auto",
-  "there_are_no_entries" : "There are no entries"
+  "there_are_no_entries" : "There are no entries",
+  "add_element" : "Add element",
+  "name" : "Name",
+  "amount" : "Amount",
+  "date" : "Date",
+  "description" : "Description",
+  "save" : "Save",
+  "cancel" : "Cancel",
+  "enter_name" : "Enter name",
+  "enter_amount" : "Enter amount"
 }

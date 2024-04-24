@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
+import 'package:itracker/l10n/app_loc.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 class AddElem extends StatefulWidget {
   final int categoryId;
@@ -42,84 +44,94 @@ class _AddElemState extends State<AddElem> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text('Добавить элемент'),
-      content: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextFormField(
-                controller: _nameController,
-                decoration: InputDecoration(labelText: 'Название'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Введите название';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _amountController,
-                keyboardType: TextInputType.number,
-                decoration: InputDecoration(labelText: 'Цена'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Введите цену';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                controller: _dateController,
-                readOnly: true,
-                decoration: InputDecoration(labelText: 'Дата'),
-                onTap: () async {
-                  final DateTime? picked = await showDatePicker(
-                    context: context,
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(2015, 8),
-                    lastDate: DateTime(2101),
-                  );
-                  if (picked != null) {
-                    setState(() {
-                      _dateController.text =
-                          DateFormat('yyyy-MM-dd').format(picked);
-                    });
-                  }
-                },
-              ),
-              TextFormField(
-                controller: _descriptionController,
-                decoration: InputDecoration(labelText: 'Описание'),
-              ),
-            ],
+      title: Center(child: Text(context.loc.add_element)),
+      content: SizedBox(
+        width: Adaptive.w(80),
+        child: Form(
+          key: _formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TextFormField(
+                  controller: _nameController,
+                  maxLength: 25,
+                  decoration: InputDecoration(labelText: context.loc.name),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return context.loc.enter_name;
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _amountController,
+                  maxLength: 10,
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(labelText: context.loc.amount),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return context.loc.enter_amount;
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _dateController,
+                  readOnly: true,
+                  decoration: InputDecoration(labelText: context.loc.date),
+                  onTap: () async {
+                    final DateTime? picked = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2015, 8),
+                      lastDate: DateTime(2101),
+                    );
+                    if (picked != null) {
+                      setState(() {
+                        _dateController.text =
+                            DateFormat('yyyy-MM-dd').format(picked);
+                      });
+                    }
+                  },
+                ),
+                TextFormField(
+                  controller: _descriptionController,
+                  decoration: InputDecoration(labelText: context.loc.description),
+                ),
+              ],
+            ),
           ),
         ),
       ),
       actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: Text('Отмена'),
-        ),
-        TextButton(
-          onPressed: () {
-            if (_formKey.currentState!.validate()) {
-              // final transaction = TransactionModel(
-              //   id: 0, // Любое целое число
-              //   name: _nameController.text,
-              //   amount: double.parse(_amountController.text),
-              //   date: DateFormat('yyyy-MM-dd').parse(_dateController.text),
-              //   description: _descriptionController.text,
-              //   categoryId: widget.categoryId,
-              //   isIncome: widget.isIncome,
-              // );
-              Navigator.of(context).pop();
-            }
-          },
-          child: Text('Добавить'),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(context.loc.cancel),
+            ),
+            TextButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  // final transaction = TransactionModel(
+                  //   id: 0, // Любое целое число
+                  //   name: _nameController.text,
+                  //   amount: double.parse(_amountController.text),
+                  //   date: DateFormat('yyyy-MM-dd').parse(_dateController.text),
+                  //   description: _descriptionController.text,
+                  //   categoryId: widget.categoryId,
+                  //   isIncome: widget.isIncome,
+                  // );
+                  Navigator.of(context).pop();
+                }
+              },
+              child: Text(context.loc.save),
+            ),
+          ],
         ),
       ],
     );
