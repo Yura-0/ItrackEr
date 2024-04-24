@@ -8,6 +8,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../../../core/blocs/theme_bloc/theme_cubit.dart';
 import '../../../core/blocs/transactions_bloc/transactions_cubit.dart';
 import '../add_elem_widget.dart';
+import 'elem_page.dart';
 
 class ListTransactionsPage extends StatelessWidget {
   final int category;
@@ -25,8 +26,7 @@ class ListTransactionsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final themebloc = context.read<ThemeCubit>();
     final transactionCubit = context.read<TransactionCubit>();
-    List<TransactionModel> categoryTransactions = transactionCubit
-        .state
+    List<TransactionModel> categoryTransactions = transactionCubit.state
         .where((transaction) => transaction.categoryId == category)
         .toList();
     categoryTransactions.sort((a, b) => b.date.compareTo(a.date));
@@ -97,7 +97,15 @@ class ListTransactionsPage extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final transaction = categoryTransactions[index];
                           return ListTile(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      ElemPage(trans: transaction),
+                                ),
+                              );
+                            },
                             title: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -140,7 +148,8 @@ class ListTransactionsPage extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.delete),
                                   onPressed: () {
-                                    transactionCubit.deleteTransaction(transaction);
+                                    transactionCubit
+                                        .deleteTransaction(transaction);
                                   },
                                 ),
                               ],
