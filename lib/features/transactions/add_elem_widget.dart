@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import 'package:itracker/l10n/app_loc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
+
+import '../../core/blocs/transactions_bloc/transactions_cubit.dart';
 
 class AddElem extends StatefulWidget {
   final int categoryId;
@@ -43,6 +47,7 @@ class _AddElemState extends State<AddElem> {
 
   @override
   Widget build(BuildContext context) {
+    final tranBloc = context.read<TransactionCubit>();
     return AlertDialog(
       title: Center(child: Text(context.loc.add_element)),
       content: SizedBox(
@@ -67,7 +72,13 @@ class _AddElemState extends State<AddElem> {
                 TextFormField(
                   controller: _amountController,
                   maxLength: 10,
-                  keyboardType: TextInputType.number,
+                  keyboardType:
+                      const TextInputType.numberWithOptions(decimal: true),
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(
+                      RegExp(r'^\d+[\.]?\d{0,2}'),
+                    ),
+                  ],
                   decoration: InputDecoration(labelText: context.loc.amount),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -81,11 +92,12 @@ class _AddElemState extends State<AddElem> {
                   readOnly: true,
                   decoration: InputDecoration(labelText: context.loc.date),
                   onTap: () async {
+                    final DateTime now = DateTime.now();
                     final DateTime? picked = await showDatePicker(
                       context: context,
-                      initialDate: DateTime.now(),
+                      initialDate: now,
                       firstDate: DateTime(2015, 8),
-                      lastDate: DateTime(2101),
+                      lastDate: now,
                     );
                     if (picked != null) {
                       setState(() {
@@ -97,7 +109,8 @@ class _AddElemState extends State<AddElem> {
                 ),
                 TextFormField(
                   controller: _descriptionController,
-                  decoration: InputDecoration(labelText: context.loc.description),
+                  decoration:
+                      InputDecoration(labelText: context.loc.description),
                 ),
               ],
             ),
@@ -117,15 +130,18 @@ class _AddElemState extends State<AddElem> {
             TextButton(
               onPressed: () {
                 if (_formKey.currentState!.validate()) {
-                  // final transaction = TransactionModel(
-                  //   id: 0, // Любое целое число
-                  //   name: _nameController.text,
-                  //   amount: double.parse(_amountController.text),
-                  //   date: DateFormat('yyyy-MM-dd').parse(_dateController.text),
-                  //   description: _descriptionController.text,
-                  //   categoryId: widget.categoryId,
-                  //   isIncome: widget.isIncome,
-                  // );
+                  tranBloc.addTransaction(
+                    TransactionModel(
+                      id: 0,
+                      name: _nameController.text,
+                      amount: double.parse(_amountController.text),
+                      date:
+                          DateFormat('yyyy-MM-dd').parse(_dateController.text),
+                      description: _descriptionController.text,
+                      categoryId: widget.categoryId,
+                      isIncome: widget.isIncome,
+                    ),
+                  );
                   Navigator.of(context).pop();
                 }
               },
