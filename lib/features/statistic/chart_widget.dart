@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:itracker/l10n/app_loc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../core/blocs/transactions_bloc/transactions_cubit.dart';
@@ -10,7 +11,7 @@ class MyPieChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<PieData> data = _prepareChartData();
+    List<PieData> data = _prepareChartData(context);
 
     return SfCircularChart(
       series: <CircularSeries>[
@@ -26,9 +27,23 @@ class MyPieChart extends StatelessWidget {
     );
   }
 
-  List<PieData> _prepareChartData() {
-    List<PieData> chartData = [];
+  List<PieData> _prepareChartData(BuildContext context) {
+    Map<int, double> categoryAmountMap = {};
 
+    for (var transaction in transactions) {
+      if (categoryAmountMap.containsKey(transaction.categoryId)) {
+        categoryAmountMap[transaction.categoryId] =
+            (categoryAmountMap[transaction.categoryId] ?? 0) +
+                transaction.amount;
+      } else {
+        categoryAmountMap[transaction.categoryId] = transaction.amount;
+      }
+    }
+
+    double totalAmount =
+        categoryAmountMap.values.fold(0, (sum, amount) => sum + amount);
+
+    List<PieData> chartData = [];
     List<Color> colors = [
       Colors.red,
       Colors.blue,
@@ -39,19 +54,43 @@ class MyPieChart extends StatelessWidget {
       Colors.teal,
     ];
 
-    double totalAmount =
-        transactions.fold(0, (sum, transaction) => sum + transaction.amount);
-    for (var i = 0; i < transactions.length; i++) {
-      TransactionModel transaction = transactions[i];
+    categoryAmountMap.forEach((categoryId, amount) {
+      String categoryName = getCategoryName(categoryId, context);
+      double percent = (amount / totalAmount * 100).toDouble();
       chartData.add(PieData(
-        category: transaction.name,
-        amount: transaction.amount,
-        percent: (transaction.amount / totalAmount * 100).toStringAsFixed(2),
-        color: colors[i % colors.length],
+        category: categoryName,
+        amount: amount,
+        percent: percent.toStringAsFixed(2),
+        color: colors[(categoryId - 1) % colors.length],
       ));
-    }
+    });
 
     return chartData;
+  }
+
+  String getCategoryName(int categoryId, BuildContext context) {
+    switch (categoryId) {
+      case 1:
+        return context.loc.bank_storage;
+      case 2:
+        return context.loc.cash_storage;
+      case 3:
+        return context.loc.passive_income;
+      case 4:
+        return context.loc.payments;
+      case 5:
+        return context.loc.shopping;
+      case 6:
+        return context.loc.medicine;
+      case 7:
+        return context.loc.entertainment;
+      case 8:
+        return context.loc.jorney;
+      case 9:
+        return context.loc.auto;
+      default:
+        return 'Unknown';
+    }
   }
 }
 

@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 final lightTheme = ThemeData(
   brightness: Brightness.light,
   primaryColor: Colors.amber, 
-  scaffoldBackgroundColor: Colors.white, 
+  scaffoldBackgroundColor: const Color.fromARGB(255, 243, 241, 206), 
   appBarTheme: AppBarTheme(
     backgroundColor: Colors.amber, toolbarTextStyle: const TextTheme(
       titleLarge: TextStyle(color: Colors.black),
