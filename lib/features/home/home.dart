@@ -4,6 +4,7 @@ import 'package:itracker/core/app/injector.dart';
 import 'package:itracker/features/transactions/pages/income_page.dart';
 
 import '../../core/blocs/theme_bloc/theme_cubit.dart';
+import '../statistic/statistic_page.dart';
 import '../transactions/pages/expense_page.dart';
 import 'botom_bar_widget.dart';
 
@@ -35,7 +36,7 @@ class HomePage extends StatelessWidget {
         children: const [
           IncomePage(),
           ExpensePage(),
-          Center(child: Text('Expense Page')),
+          StatisticPage(),
         ],
       ),
       bottomNavigationBar: CustomBottomNavigationBar(

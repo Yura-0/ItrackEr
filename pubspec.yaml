@@ -20,6 +20,7 @@ dependencies:
   responsive_sizer: ^3.3.0+1
   shared_preferences: ^2.2.2
   intl: ^0.18.1
+  syncfusion_flutter_charts: ^25.1.41+1
 
 dev_dependencies:
   flutter_test:
