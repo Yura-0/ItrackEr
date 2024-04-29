@@ -16,11 +16,11 @@ class ListTransactionsPage extends StatelessWidget {
   final String categoryName;
 
   const ListTransactionsPage({
-    Key? key,
+    super.key,
     required this.category,
     required this.isIncome,
     required this.categoryName,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -148,8 +148,42 @@ class ListTransactionsPage extends StatelessWidget {
                                 IconButton(
                                   icon: const Icon(Icons.delete),
                                   onPressed: () {
-                                    transactionCubit
-                                        .deleteTransaction(transaction);
+                                    showDialog<void>(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (BuildContext context) {
+                                        return AlertDialog(
+                                          title: Center(
+                                            child: Text(
+                                                context.loc.delete_transaction),
+                                          ),
+                                          content: SingleChildScrollView(
+                                            child: ListBody(
+                                              children: <Widget>[
+                                                Text(context.loc.are_you_sure, textAlign: TextAlign.center,),
+                                              ],
+                                            ),
+                                          ),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              child: Text(context.loc.cancel),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                            TextButton(
+                                              child: Text(context.loc.delete),
+                                              onPressed: () {
+                                                transactionCubit
+                                                    .deleteTransaction(
+                                                        transaction);
+                                                Navigator.of(context).pop();
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
                                   },
                                 ),
                               ],
