@@ -1,8 +1,10 @@
+// Модуль контролю теми додатка
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// Шаблон світлої теми
 final lightTheme = ThemeData(
   brightness: Brightness.light,
   primaryColor: Colors.amber, 
@@ -16,6 +18,7 @@ final lightTheme = ThemeData(
   ),
 );
 
+// Шаблон темної теми
 final darkTheme = ThemeData(
   brightness: Brightness.dark,
   primaryColor: Colors.black, 
@@ -28,17 +31,22 @@ final darkTheme = ThemeData(
     ).titleLarge,
   ),
 );
+
+// Клас стану теми
 enum ThemeState { light, dark }
 
+// Клас контролю теми
 class ThemeCubit extends Cubit<ThemeState> {
   final SharedPreferences _prefs;
   ThemeCubit(this._prefs) : super(ThemeState.light);
 
+  // Метод зміни теми
   void toggleTheme() {
     emit(state == ThemeState.light ? ThemeState.dark : ThemeState.light);
     _prefs.setString('theme', state == ThemeState.light ? 'light' : 'dark');
   }
 
+  // Метод завантаження теми
   Future<ThemeState> loadTheme() async {
     final themeMode = _prefs.getString('theme') ?? 'light';
     emit(themeMode == 'light' ? ThemeState.light : ThemeState.dark);

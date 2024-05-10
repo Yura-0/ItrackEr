@@ -1,7 +1,9 @@
+// Модуль контролю стану транзакцій
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../db.dart';
 
+// Модель транзакції
 class TransactionModel {
   final int id;
   final String name;
@@ -91,15 +93,19 @@ class TransactionModel {
   }
 }
 
+
+// Клас контролю стану транзакцій
 class TransactionCubit extends Cubit<List<TransactionModel>> {
   final AppDatabase database;
   TransactionCubit(this.database) : super([]);
 
+  // Метод ініціалізації
   Future<void> initState() async {
     final transactions = await database.getAllTransactions();
     emit(transactions);
   }
 
+ // Метод додавання нової транзакції
  Future<void> addTransaction(TransactionModel transaction) async {
   final newId = await database.insertTransaction(transaction);
   final newTransaction = TransactionModel(
@@ -115,7 +121,7 @@ class TransactionCubit extends Cubit<List<TransactionModel>> {
   emit(updatedTransactions);
 }
 
-
+  // Метод оновлення транзакції
   Future<void> updateTransaction(TransactionModel transaction) async {
     await database.updateTransaction(transaction);
     final updatedTransactions = [
@@ -125,6 +131,7 @@ class TransactionCubit extends Cubit<List<TransactionModel>> {
     emit(updatedTransactions);
   }
 
+  // Метод видалення транзакції
   Future<void> deleteTransaction(TransactionModel transaction) async {
     await database.deleteTransaction(transaction.id);
     final updatedTransactions =

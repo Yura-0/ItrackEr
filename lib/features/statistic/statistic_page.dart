@@ -1,3 +1,4 @@
+// Екран статистики
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itracker/l10n/app_loc.dart';
@@ -28,6 +29,7 @@ class _StatisticPageState extends State<StatisticPage> {
     _trans = sortByCategory(_trans, _isIncome);
   }
 
+  // Метод сортування транзакцій по категоріям
   List<TransactionModel> sortByCategory(
       List<TransactionModel> transactions, bool isIncome) {
     List<int> allowedCategories = isIncome ? [1, 2, 3] : [4, 5, 6, 7, 8, 9];
@@ -38,6 +40,7 @@ class _StatisticPageState extends State<StatisticPage> {
         .toList();
   }
 
+  // Метод сортування транзакцій по даті
   List<TransactionModel> sortByDate(
       List<TransactionModel> transactions, bool isWeek) {
     DateTime now = DateTime.now();

@@ -1,7 +1,9 @@
+// Модуль навігації головного екрану
 import 'package:flutter/material.dart';
 import 'package:itracker/l10n/app_loc.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+// Віджет навігації
 class CustomBottomNavigationBar extends StatefulWidget {
   final PageController pageController;
 

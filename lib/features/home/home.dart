@@ -1,3 +1,4 @@
+// Модуль головного екрану
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itracker/core/app/injector.dart';
@@ -8,6 +9,7 @@ import '../statistic/statistic_page.dart';
 import '../transactions/pages/expense_page.dart';
 import 'botom_bar_widget.dart';
 
+// Форма головного екрану
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 

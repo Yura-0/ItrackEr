@@ -1,3 +1,4 @@
+// Модуль екрану завантаження
 import 'package:flutter/material.dart';
 import 'package:itracker/core/app/img_assets.dart';
 import 'package:itracker/l10n/app_loc.dart';

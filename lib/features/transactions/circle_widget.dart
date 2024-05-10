@@ -1,3 +1,4 @@
+// Віджет кругових елементів категорій
 import 'package:flutter/material.dart';
 
 class CircleWidget extends StatelessWidget {

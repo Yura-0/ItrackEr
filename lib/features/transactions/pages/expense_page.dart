@@ -1,3 +1,4 @@
+// Екран витрат
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:itracker/l10n/app_loc.dart';

@@ -1,9 +1,11 @@
+// Модуль графіку статистики
 import 'package:flutter/material.dart';
 import 'package:itracker/l10n/app_loc.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../core/blocs/transactions_bloc/transactions_cubit.dart';
 
+// Віджет графіку
 class MyPieChart extends StatelessWidget {
   final List<TransactionModel> transactions;
 
@@ -27,6 +29,7 @@ class MyPieChart extends StatelessWidget {
     );
   }
 
+  //Метод підготовка даних для графіку
   List<PieData> _prepareChartData(BuildContext context) {
     Map<int, double> categoryAmountMap = {};
 
@@ -68,6 +71,7 @@ class MyPieChart extends StatelessWidget {
     return chartData;
   }
 
+  // Метод отримання назви категорією
   String getCategoryName(int categoryId, BuildContext context) {
     switch (categoryId) {
       case 1:
@@ -94,6 +98,7 @@ class MyPieChart extends StatelessWidget {
   }
 }
 
+// Клас даних для графіку
 class PieData {
   final String category;
   final double amount;

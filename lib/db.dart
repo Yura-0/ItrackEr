@@ -1,3 +1,4 @@
+// Модуль бази даних
 import 'dart:io';
 
 import 'package:drift/drift.dart';
@@ -11,6 +12,7 @@ import 'core/blocs/transactions_bloc/transactions_cubit.dart';
 
 part 'db.g.dart';
 
+// Макет таблиці транзакцій
 class Transactions extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get name => text()();
@@ -20,7 +22,7 @@ class Transactions extends Table {
   IntColumn get categoryId => integer()();
   BoolColumn get isIncome => boolean()();
 }
-
+// Таблиця транзакцій
 @DriftDatabase(tables: [Transactions])
 class AppDatabase extends _$AppDatabase {
   AppDatabase() : super(_openConnection());
@@ -28,6 +30,7 @@ class AppDatabase extends _$AppDatabase {
   @override
   int get schemaVersion => 1;
 
+// Метод отримання усіх транзакцій із БД
   Future<List<TransactionModel>> getAllTransactions() async {
     final database = AppDatabase();
 
@@ -48,6 +51,7 @@ class AppDatabase extends _$AppDatabase {
     return transactionModels;
   }
 
+// Метод додавання нової транзакції
   Future<int> insertTransaction(TransactionModel transaction) async {
     return into(transactions).insert(TransactionsCompanion(
       name: Value(transaction.name),
@@ -59,6 +63,7 @@ class AppDatabase extends _$AppDatabase {
     ));
   }
 
+// Метод оновлення транзакції
   Future<void> updateTransaction(TransactionModel transaction) async {
     await (update(transactions)..where((t) => t.id.equals(transaction.id)))
         .write(TransactionsCompanion(
@@ -71,11 +76,13 @@ class AppDatabase extends _$AppDatabase {
     ));
   }
 
+// Метод видалення транзакції
   Future<void> deleteTransaction(int id) async {
     await (delete(transactions)..where((t) => t.id.equals(id))).go();
   }
 }
 
+// Метод відкриття бази даних
 LazyDatabase _openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();

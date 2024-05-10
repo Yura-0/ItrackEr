@@ -1,3 +1,4 @@
+// Модуль маршрутизації
 import 'package:flutter/material.dart';
 
 import '../../features/home/home.dart';
