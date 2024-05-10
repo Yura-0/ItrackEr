@@ -110,7 +110,7 @@ class _StatisticPageState extends State<StatisticPage> {
                 },
               ),
               SizedBox(
-                height: Adaptive.h(5),
+                height: Adaptive.h(10),
               ),
               _trans.isEmpty
                   ? Text(
