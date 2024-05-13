@@ -28,7 +28,7 @@
   "enter_amount" : "Enter amount",
   "transaction_details" : "Transaction details",
   "field_is_required" : "The \"Name\" and \"Amount\" fields must be filled in!",
-  "week" : "Week",
+  "year" : "Year",
   "month" : "Month",
   "no_data" : "No data",
   "delete_transaction" : "Delete transaction",

@@ -18,14 +18,14 @@ class StatisticPage extends StatefulWidget {
 
 class _StatisticPageState extends State<StatisticPage> {
   bool _isIncome = true;
-  bool _isWeek = true;
+  bool _isMonth = true;
   late List<TransactionModel> _trans = [];
 
   @override
   void initState() {
     super.initState();
     _trans = context.read<TransactionCubit>().state;
-    _trans = sortByDate(_trans, _isWeek);
+    _trans = sortByDate(_trans, _isMonth);
     _trans = sortByCategory(_trans, _isIncome);
   }
 
@@ -42,17 +42,17 @@ class _StatisticPageState extends State<StatisticPage> {
 
   // Метод сортування транзакцій по даті
   List<TransactionModel> sortByDate(
-      List<TransactionModel> transactions, bool isWeek) {
+      List<TransactionModel> transactions, bool isMonth) {
     DateTime now = DateTime.now();
     DateTime start;
     DateTime end;
 
-    if (isWeek) {
-      start = DateTime(now.year, now.month, now.day - now.weekday);
-      end = DateTime(now.year, now.month, now.day + (7 - now.weekday));
-    } else {
+    if (isMonth) {
       start = DateTime(now.year, now.month, 1);
       end = DateTime(now.year, now.month + 1, 0);
+    } else {
+      start = DateTime(now.year, 1, 1);
+      end = DateTime(now.year, 12, 31);
     }
 
     return transactions
@@ -80,7 +80,7 @@ class _StatisticPageState extends State<StatisticPage> {
                   _isIncome = !_isIncome;
                   _trans = context.read<TransactionCubit>().state;
                   _trans = sortByCategory(_trans, _isIncome);
-                  _trans = sortByDate(_trans, _isWeek);
+                  _trans = sortByDate(_trans, _isMonth);
                 },
               );
             },
@@ -100,14 +100,14 @@ class _StatisticPageState extends State<StatisticPage> {
               ),
               WeekMonthSwitcher(
                 isIncome: _isIncome,
-                isWeek: _isWeek,
+                isMonth: _isMonth,
                 onChanged: (value) {
                   setState(
                     () {
-                      _isWeek = value;
+                      _isMonth = value;
                       _trans = context.read<TransactionCubit>().state;
                       _trans = sortByCategory(_trans, _isIncome);
-                      _trans = sortByDate(_trans, _isWeek);
+                      _trans = sortByDate(_trans, _isMonth);
                     },
                   );
                 },

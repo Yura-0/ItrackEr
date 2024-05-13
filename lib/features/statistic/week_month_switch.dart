@@ -8,12 +8,12 @@ import '../../core/blocs/theme_bloc/theme_cubit.dart';
 
 class WeekMonthSwitcher extends StatefulWidget {
   final bool isIncome;
-  final bool isWeek;
+  final bool isMonth;
   final ValueChanged<bool> onChanged;
 
   const WeekMonthSwitcher({
     Key? key,
-    required this.isWeek,
+    required this.isMonth,
     required this.onChanged,
     required this.isIncome,
   }) : super(key: key);
@@ -29,7 +29,7 @@ class _WeekMonthSwitcherState extends State<WeekMonthSwitcher> {
       builder: (context, state) {
         return GestureDetector(
           onTap: () {
-            widget.onChanged(!widget.isWeek);
+            widget.onChanged(!widget.isMonth);
           },
           child: Container(
             height: Adaptive.h(5),
@@ -44,7 +44,7 @@ class _WeekMonthSwitcherState extends State<WeekMonthSwitcher> {
               children: [
                 AnimatedPositioned(
                   duration: const Duration(milliseconds: 300),
-                  left: widget.isWeek ? 0 : Adaptive.w(25),
+                  left: widget.isMonth ? 0 : Adaptive.w(25),
                   child: Container(
                     width: Adaptive.w(25),
                     height: Adaptive.h(5),
@@ -67,7 +67,7 @@ class _WeekMonthSwitcherState extends State<WeekMonthSwitcher> {
                       padding: const EdgeInsets.only(left: 8.0),
                       child: Center(
                         child: Text(
-                          context.loc.week,
+                          context.loc.month,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 14),
                         ),
@@ -80,7 +80,7 @@ class _WeekMonthSwitcherState extends State<WeekMonthSwitcher> {
                       padding: const EdgeInsets.only(right: 8.0),
                       child: Center(
                         child: Text(
-                          context.loc.month,
+                          context.loc.year,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, fontSize: 14),
                         ),

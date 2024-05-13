@@ -28,7 +28,7 @@
     "enter_amount": "Введіть ціну",
     "transaction_details": "Деталі транзакції",
     "field_is_required": "Поля \"Назва\" та \"Ціна\" мають бути заповнені!",
-    "week" : "Тиждень",
+    "year" : "Рік",
     "month" : "Місяць",
     "no_data" : "Немає даних",
     "delete_transaction" : "Видалення транзакції",
