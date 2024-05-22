@@ -143,7 +143,7 @@ class ListTransactionsPage extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Text(DateFormat('yyyy-MM-dd').format(
+                                Text(DateFormat('dd.MM.yyyy').format(
                                   transaction.date,
                                 )),
                                 IconButton(

@@ -31,7 +31,7 @@ class _ElemPageState extends State<ElemPage> {
     _amountController =
         TextEditingController(text: widget.trans.amount.toString());
     _dateController = TextEditingController(
-        text: DateFormat('yyyy-MM-dd').format(widget.trans.date));
+        text: DateFormat('dd.MM.yyyy').format(widget.trans.date));
     _descriptionController =
         TextEditingController(text: widget.trans.description);
   }
@@ -121,7 +121,7 @@ class _ElemPageState extends State<ElemPage> {
                 if (picked != null) {
                   setState(() {
                     _dateController.text =
-                        DateFormat('yyyy-MM-dd').format(picked);
+                        DateFormat('dd.MM.yyyy').format(picked);
                   });
                 }
               },
@@ -150,7 +150,7 @@ class _ElemPageState extends State<ElemPage> {
                   transbloc.updateTransaction(widget.trans.copyWith(
                     name: _nameController.text,
                     amount: double.parse(_amountController.text),
-                    date: DateFormat('yyyy-MM-dd').parse(_dateController.text),
+                    date: DateFormat('dd.MM.yyyy').parse(_dateController.text),
                     description: _descriptionController.text,
                   ));
                   setState(() {
